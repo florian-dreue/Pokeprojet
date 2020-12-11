@@ -1,7 +1,5 @@
 # Projet Web Iut Info module Web 2020
 
-
-(A renseigner)
 Groupe n°2
 Dreue Florian
 
