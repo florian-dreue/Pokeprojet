@@ -2,10 +2,8 @@
 
 
 (A renseigner)
-- Groupe N° :
-- Nom Prenom
-- Nom Prenom
-- Nom Prenom
+Groupe n°2
+Dreue Florian
 
 
 ## Récupération du projet
