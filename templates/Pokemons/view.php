@@ -3,110 +3,64 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Pokemon $pokemon
  */
+use Cake\ORM\TableRegistry;
 ?>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <div class="row">
-    <aside class="column">
-        <div class="side-nav">
-            <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Form->postLink(__('Delete Pokemon'), ['action' => 'delete', $pokemon->id], ['confirm' => __('Are you sure you want to delete # {0}?', $pokemon->id), 'class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('List Pokemons'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-        </div>
-    </aside>
     <div class="column-responsive column-80">
         <div class="pokemons view content">
-            <h3><?= h($pokemon->name) ?></h3>
-            <table>
-                <tr>
-                    <th><?= __('Name') ?></th>
-                    <td><?= h($pokemon->name) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Default Front Sprite Url') ?></th>
-                    <td><?= h($pokemon->default_front_sprite_url) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Id') ?></th>
-                    <td><?= $this->Number->format($pokemon->id) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Height') ?></th>
-                    <td><?= $this->Number->format($pokemon->height) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Weight') ?></th>
-                    <td><?= $this->Number->format($pokemon->weight) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Pokedex Number') ?></th>
-                    <td><?= $this->Number->format($pokemon->pokedex_number) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Created') ?></th>
-                    <td><?= h($pokemon->created) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Modified') ?></th>
-                    <td><?= h($pokemon->modified) ?></td>
-                </tr>
-            </table>
-            <div class="related">
-                <h4><?= __('Related Pokemon Stats') ?></h4>
-                <?php if (!empty($pokemon->pokemon_stats)) : ?>
-                <div class="table-responsive">
-                    <table>
-                        <tr>
-                            <th><?= __('Id') ?></th>
-                            <th><?= __('Pokemon Id') ?></th>
-                            <th><?= __('Stat Id') ?></th>
-                            <th><?= __('Value') ?></th>
-                            <th class="actions"><?= __('Actions') ?></th>
-                        </tr>
-                        <?php foreach ($pokemon->pokemon_stats as $pokemonStats) : ?>
-                        <tr>
-                            <td><?= h($pokemonStats->id) ?></td>
-                            <td><?= h($pokemonStats->pokemon_id) ?></td>
-                            <td><?= h($pokemonStats->stat_id) ?></td>
-                            <td><?= h($pokemonStats->value) ?></td>
-                            <td class="actions">
-                                <?= $this->Html->link(__('View'), ['controller' => 'PokemonStats', 'action' => 'view', $pokemonStats->id]) ?>
-                                <?= $this->Html->link(__('Edit'), ['controller' => 'PokemonStats', 'action' => 'edit', $pokemonStats->id]) ?>
-                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'PokemonStats', 'action' => 'delete', $pokemonStats->id], ['confirm' => __('Are you sure you want to delete # {0}?', $pokemonStats->id)]) ?>
-                            </td>
-                        </tr>
-                        <?php endforeach; ?>
-                    </table>
+            <h3 class="PokeName" align="center"><?= h($pokemon->name) ?></h3>
+            <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
+
+                <div class="carousel-inner">
+                    <div class="item">
+                        <img src="<?= h($pokemon->sprite_shiny) ?>" alt="Shiny" width="40%">
+                    </div>
+
+                    <div class="item active">
+                        <img src="<?= h($pokemon->default_front_sprite_url) ?>" alt="Default" width="40%">
+                    </div>
+
+                    <div class="item">
+                        <img src="<?= h($pokemon->sprite_back) ?>" alt="Back" width="40%">
+                    </div>
                 </div>
-                <?php endif; ?>
+
+                <a class="left carousel-control" href="#myCarousel" data-slide="prev" style="background:rgb(228, 228, 228);">
+                    <span class="glyphicon glyphicon-arrow-left"></span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" data-slide="next" style="background:rgb(228, 228, 228);">
+                    <span class="glyphicon glyphicon-arrow-right"></span>
+                </a>
             </div>
+            <br>
+            <div class="color_type1" align="left"><table class="types" border="2"><tr><td class="type--<?= h($pokemon->first_type) ?>"><?= h($pokemon->first_type) ?></td></tr></table></div>
+            <?php if ($pokemon->has_second_type) : ?>
+                <div class="color_type2" align="right"><table class="types" border="2"><tr><td class="type--<?= h($pokemon->second_type) ?>"><?= $pokemon->second_type ?></td></tr></table></div>
+            <?php endif ?>
+            <br>
+            <br>
             <div class="related">
-                <h4><?= __('Related Pokemon Types') ?></h4>
-                <?php if (!empty($pokemon->pokemon_types)) : ?>
-                <div class="table-responsive">
-                    <table>
-                        <tr>
-                            <th><?= __('Id') ?></th>
-                            <th><?= __('Pokemon Id') ?></th>
-                            <th><?= __('Type Id') ?></th>
-                            <th><?= __('Created') ?></th>
-                            <th><?= __('Modified') ?></th>
-                            <th class="actions"><?= __('Actions') ?></th>
-                        </tr>
-                        <?php foreach ($pokemon->pokemon_types as $pokemonTypes) : ?>
-                        <tr>
-                            <td><?= h($pokemonTypes->id) ?></td>
-                            <td><?= h($pokemonTypes->pokemon_id) ?></td>
-                            <td><?= h($pokemonTypes->type_id) ?></td>
-                            <td><?= h($pokemonTypes->created) ?></td>
-                            <td><?= h($pokemonTypes->modified) ?></td>
-                            <td class="actions">
-                                <?= $this->Html->link(__('View'), ['controller' => 'PokemonTypes', 'action' => 'view', $pokemonTypes->id]) ?>
-                                <?= $this->Html->link(__('Edit'), ['controller' => 'PokemonTypes', 'action' => 'edit', $pokemonTypes->id]) ?>
-                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'PokemonTypes', 'action' => 'delete', $pokemonTypes->id], ['confirm' => __('Are you sure you want to delete # {0}?', $pokemonTypes->id)]) ?>
-                            </td>
-                        </tr>
-                        <?php endforeach; ?>
-                    </table>
-                </div>
+                <?php if (!empty($pokemon->pokemon_stats)) : ?>
+                    <div class="table-responsive">
+                        <table class="stats" border="5">
+                            <?php foreach ($pokemon->pokemon_stats as $pokemonStats) : ?>
+                                <tr>
+                                    <?php
+                                        $query = TableRegistry::getTableLocator()->get('stats')->find();
+                                        $query
+                                        ->where(["id = $pokemonStats->stat_id"]);
+                                        foreach ($query as $article) { ?>
+                                            <td class="types"><?php echo $article->name;?></td>
+                                            <td class="types"><?= h($pokemonStats->value) ?></td>
+                                            <?php } 
+                                    ?>
+                                </tr>
+                            <?php endforeach; ?>
+                        </table>
+                    </div>
                 <?php endif; ?>
             </div>
         </div>
