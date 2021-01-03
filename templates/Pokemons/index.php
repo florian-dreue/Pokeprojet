@@ -5,7 +5,7 @@
  */
 ?>
 <div class="pokemons index content">
-    <h3><?= __('Pokemons') ?></h3>
+    <h3 align="center"><?= __('Pokemons') ?></h3>
 
     <div class="row">
         <?php foreach ($pokemons as $pokemon) : ?>
