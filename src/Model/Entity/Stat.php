@@ -27,7 +27,9 @@ class Stat extends Entity
      * @var array
      */
     protected $_accessible = [
-        '*' => true,
-        'id' => false,
+        'name' => true,
+        'created' => true,
+        'modified' => true,
+        'pokemon_stats' => true,
     ];
 }
