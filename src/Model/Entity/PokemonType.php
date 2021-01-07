@@ -29,7 +29,11 @@ class PokemonType extends Entity
      * @var array
      */
     protected $_accessible = [
-        '*' => true,
-        'id' => false,
+        'pokemon_id' => true,
+        'type_id' => true,
+        'created' => true,
+        'modified' => true,
+        'pokemon' => true,
+        'type' => true,
     ];
 }
