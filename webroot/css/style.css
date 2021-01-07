@@ -7949,11 +7949,14 @@ h5 {
 
 div.pokemons{
   background-color:rgb(228, 228, 228);
+  margin-left:auto;
+  margin-right:auto;
 }
 
 span.glyphicon{
   margin-top:100%;
   color:black;
+  background-color:rgb(189, 189, 189);
 }
 
 table.types{
@@ -7962,6 +7965,8 @@ table.types{
 
 td.types{
   text-align: center;
+  border-color:black;
+  text-transform: capitalize;
 }
 
 h3.PokeName{
