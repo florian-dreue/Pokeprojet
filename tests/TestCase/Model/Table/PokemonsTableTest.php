@@ -62,14 +62,4 @@ class PokemonsTableTest extends TestCase
     {
         $this->markTestIncomplete('Not implemented yet.');
     }
-
-    /**
-     * Test formatDataForSave method
-     *
-     * @return void
-     */
-    public function testFormatDataForSave(): void
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
 }
