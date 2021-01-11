@@ -13,13 +13,13 @@ use Cake\ORM\TableRegistry;
         <div class="pokemons view content" style="margin-left:10%; margin-right:10%;">
             <h3 class="PokeName" align="center"><?= h($pokemon->name) ?></h3>
             <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
-                <div class="carousel-inner">
+                <div class="carousel-inner"">
                     <?php if(!empty($pokemon->sprite_shiny)){ ?>
                         <div class="item" align="center">
                             <img src="<?= h($pokemon->sprite_shiny) ?>" alt="Default" width="40%">
                         </div>
                     <?php } else{ ?>
-                        <div class="item" align="center" style="margin-top:15%; margin-bottom:20%">
+                        <div class="item" align="center" style="margin-top:15%; margin-bottom:20.25%">
                             <img src="<?= h($pokemon->sprite_shiny) ?>" alt="Shiny" width="40%">
                         </div>
                     <?php } ?>
@@ -28,7 +28,7 @@ use Cake\ORM\TableRegistry;
                             <img src="<?= h($pokemon->default_front_sprite_url) ?>" alt="Default" width="40%">
                         </div>
                     <?php } else{ ?>
-                        <div class="item active" align="center" style="margin-top:15%; margin-bottom:20%">
+                        <div class="item active" align="center" style="margin-top:15%; margin-bottom:20.25%">
                             <img src="<?= h($pokemon->default_front_sprite_url) ?>" alt="Default" width="40%">
                         </div>
                     <?php } ?>
@@ -37,7 +37,7 @@ use Cake\ORM\TableRegistry;
                             <img src="<?= h($pokemon->sprite_back) ?>" alt="Default" width="40%">
                         </div>
                     <?php } else{ ?>
-                        <div class="item" align="center" style="margin-top:15%; margin-bottom:20%">
+                        <div class="item" align="center" style="margin-top:15%; margin-bottom:20.25%">
                             <img src="<?= h($pokemon->sprite_back) ?>" alt="Back" width="40%">
                         </div>
                     <?php } ?>
