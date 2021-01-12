@@ -1,4 +1,5 @@
 <?php
+
 /**
  * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
@@ -18,12 +19,12 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
     <?= $this->Html->charset() ?>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
-        <?= $cakeDescription ?>:
-        <?= $this->fetch('title') ?>
+        Pokédex
     </title>
     <?= $this->Html->meta('icon') ?>
 
@@ -35,6 +36,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
 </head>
+
 <body>
     <nav class="container navbar navbar-expand-lg navbar-light bg-light">
 
@@ -56,10 +58,9 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             <ul class="navbar-nav">
                 <li class="nav-item active">
                     <?= $this->Html->link(__('Pokemons'), ['controller' => 'Pokemons', 'action' => 'index'], ['class' => "nav-link"]) ?>
-                    
                 </li>
                 <li class="nav-item active">
-                    <?= $this->Html->link(__('Dashboard'), ['controller' => 'Dashboard', 'action' => 'index'], ['class' => "nav-link"]) ?>
+                    <?= $this->Html->link(__('Dashboard'), ['controller' => 'Pokemons', 'action' => 'dashboard'], ['class' => "nav-link"]) ?>
                 </li>
             </ul>
         </div>
@@ -71,14 +72,15 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         </div>
     </main>
     <footer class="container">
-    <div class="row">
-        <div class="col-auto snorlax">
-            <?= $this->element('Footer/snorlax') ?>
-        </div>
-        <div class="col-auto text-center">
+        <div class="row">
+            <div class="col-auto snorlax">
+                <?= $this->element('Footer/snorlax') ?>
+            </div>
+            <div class="col-auto text-center">
                 A sleeping Pokemon block the way !
+            </div>
         </div>
-    </div>
     </footer>
 </body>
+
 </html>

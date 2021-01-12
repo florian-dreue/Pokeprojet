@@ -50,9 +50,11 @@ class PokemonsTable extends Table
 
         $this->hasMany('PokemonStats', [
             'foreignKey' => 'pokemon_id',
+            'saveStrategy' => 'replace',
         ]);
         $this->hasMany('PokemonTypes', [
             'foreignKey' => 'pokemon_id',
+            'saveStrategy' => 'replace',
         ]);
     }
 
@@ -89,24 +91,41 @@ class PokemonsTable extends Table
             ->maxLength('default_front_sprite_url', 255)
             ->requirePresence('default_front_sprite_url', 'create')
             ->notEmptyString('default_front_sprite_url');
-
         $validator
-            ->scalar('sprite_shiny')
-            ->maxLength('sprite_shiny', 255)
-            ->requirePresence('sprite_shiny', 'create')
-            ->notEmptyString('sprite_shiny');
-
+            ->scalar('default_back_sprite_url')
+            ->maxLength('default_back_sprite_url', 255)
+            ->requirePresence('default_back_sprite_url', 'create')
+            ->notEmptyString('default_back_sprite_url');   
         $validator
-            ->scalar('sprite_back')
-            ->maxLength('sprite_back', 255)
-            ->requirePresence('sprite_back', 'create')
-            ->notEmptyString('sprite_back');
-
-        $validator
-            ->integer('pokedex_number')
-            ->requirePresence('pokedex_number', 'create')
-            ->notEmptyString('pokedex_number');
+            ->scalar('shiny_front_sprite_url')
+            ->maxLength('shiny_front_sprite_url', 255)
+            ->requirePresence('shiny_front_sprite_url', 'create')
+            ->notEmptyString('shiny_front_sprite_url');  
 
         return $validator;
+    }
+
+    /**
+     * Format Data for save
+     *
+     * @param array $pokeApiData Data from Poke Api
+     * @return array
+     */
+    public function formatDataForSave($pokeApiData)
+    {
+        $pokemonStats = $this->PokemonStats->formatDataForSave($pokeApiData['stats']);
+        $pokemonTypes = $this->PokemonTypes->formatDataForSave($pokeApiData['types']);
+
+        return [
+            'pokedex_number' => $pokeApiData['id'],
+            'name' => $pokeApiData['name'],
+            'default_front_sprite_url' => $pokeApiData['sprites']['front_default'],
+            'default_back_sprite_url' => $pokeApiData['sprites']['back_default'],
+            'shiny_front_sprite_url' => $pokeApiData['sprites']['front_shiny'],
+            'height' => $pokeApiData['height'],
+            'weight' => $pokeApiData['weight'],
+            'pokemon_stats' => $pokemonStats,
+            'pokemon_types' => $pokemonTypes,
+        ];
     }
 }
