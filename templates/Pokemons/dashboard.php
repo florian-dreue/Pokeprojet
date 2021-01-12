@@ -40,7 +40,8 @@ use Cake\ORM\TableRegistry;
                         $count=0;
                         for($i=$début;$i<=$fin;$i++){
                             if(($i>0 AND $i<152) OR ($i>253 AND $i<385) OR ($i>721 AND $i<810)){
-                                $tri = TableRegistry::getTableLocator()->get('pokemon_types')->find()->where(["pokemon_id = $i"]);
+                                $j=$i+820;
+                                $tri = TableRegistry::getTableLocator()->get('pokemon_types')->find()->where(["pokemon_id = $j"]);
                                 foreach($tri as $trier){
                                     $type = TableRegistry::getTableLocator()->get('types')->find()->where(["id = $trier->type_id"]);
                                     foreach($type as $types){
@@ -69,7 +70,9 @@ use Cake\ORM\TableRegistry;
                             $trivit = TableRegistry::getTableLocator()->get('pokemon_stats')->find()->where(["stat_id = 6"])->order(["value" => "DESC"]);
                             foreach($trivit as $vitesse){
                                 if($compte<10){
-                                    $vite=TableRegistry::getTableLocator()->get('pokemons')->find()->where(["pokedex_number=$vitesse->pokemon_id"]);
+                                    $id = $vitesse->pokemon_id;
+                                    $id = $id -820;
+                                    $vite=TableRegistry::getTableLocator()->get('pokemons')->find()->where(["pokedex_number=$id"]);
                                     ?>
                                     <table>
                                         <?php
@@ -94,7 +97,7 @@ use Cake\ORM\TableRegistry;
                                                             echo $compte+1;
                                                         ?>
                                                     </td>
-                                                    <td style="border-color:rgb(97, 97, 97);" width=30%><?php echo $rapide->id ?></td>
+                                                    <td style="border-color:rgb(97, 97, 97);" width=30%><?php $id = $rapide->id; $id = $id -820; echo $id ?></td>
                                                     <td style="border-color:rgb(97, 97, 97);" width=30%>
                                                         <?= $this->Html->link(__(ucwords($rapide->name)), ['controller' => 'Pokemons','action' => 'view', $rapide->id], ['class' => "nav-link"]); ?>
                                                     </td>

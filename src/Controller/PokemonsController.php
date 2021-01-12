@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Controller;
@@ -45,50 +46,6 @@ class PokemonsController extends AppController
     }
 
     /**
-     * Add method
-     *
-     * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
-     */
-    public function add()
-    {
-        $pokemon = $this->Pokemons->newEmptyEntity();
-        if ($this->request->is('post')) {
-            $pokemon = $this->Pokemons->patchEntity($pokemon, $this->request->getData());
-            if ($this->Pokemons->save($pokemon)) {
-                $this->Flash->success(__('The pokemon has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The pokemon could not be saved. Please, try again.'));
-        }
-        $this->set(compact('pokemon'));
-    }
-
-    /**
-     * Edit method
-     *
-     * @param string|null $id Pokemon id.
-     * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function edit($id = null)
-    {
-        $pokemon = $this->Pokemons->get($id, [
-            'contain' => [],
-        ]);
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $pokemon = $this->Pokemons->patchEntity($pokemon, $this->request->getData());
-            if ($this->Pokemons->save($pokemon)) {
-                $this->Flash->success(__('The pokemon has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The pokemon could not be saved. Please, try again.'));
-        }
-        $this->set(compact('pokemon'));
-    }
-
-    /**
      * Delete method
      *
      * @param string|null $id Pokemon id.
@@ -106,5 +63,17 @@ class PokemonsController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    /**
+     * Dashboard method
+     *
+     * @return \Cake\Http\Response|null|void Renders view
+     */
+    public function dashboard()
+    {
+
+        $pokemons = $this->Pokemons->find('all')->contain(['PokemonStats.Stats', 'PokemonTypes.Types']);
+        $this->set(compact('pokemons'));
     }
 }

@@ -51,16 +51,16 @@ $routes->scope('/', function (RouteBuilder $builder) {
     ]));
     // $builder->applyMiddleware('csrf');
     /*
-     * Here, we are connecting '/' (base path) to a controller called 'Pokemons',
+     * Here, we are connecting '/' (base path) to a controller called 'Pages',
      * its action called 'display', and we pass a param to select the view file
-     * to use (in this case, templates/Pokemons/index.php)...
+     * to use (in this case, templates/Pages/home.php)...
      */
     $builder->connect('/', ['controller' => 'Pokemons', 'action' => 'index']);
 
     /*
-     * ...and connect the rest of 'Pokemons' controller's URLs.
+     * ...and connect the rest of 'Pages' controller's URLs.
      */
-    $builder->connect('/Pokemons/*', 'Pokemons::display');
+    $builder->connect('/pages/*', 'Pages::display');
 
     /*
      * Connect catchall routes for all controllers.
@@ -77,6 +77,8 @@ $routes->scope('/', function (RouteBuilder $builder) {
      */
     $builder->fallbacks();
 });
+
+
 
 /*
  * If you need a different set of middleware or none at all,
