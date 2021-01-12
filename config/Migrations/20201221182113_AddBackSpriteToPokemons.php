@@ -18,7 +18,7 @@ class AddBackSpriteToPokemons extends AbstractMigration
         $table->addColumn('default_back_sprite_url', 'string', [
             'default' => null,
             'limit' => 255,
-            'null' => false,
+            'null' => true,
         ]);
         $table->update();
     }

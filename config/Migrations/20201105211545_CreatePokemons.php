@@ -43,16 +43,6 @@ class CreatePokemons extends AbstractMigration
             'default' => null,
             'null' => false,
         ]);
-        $table->addColumn('default_back_sprite_url', 'string', [
-            'default' => null,
-            'limit' => 255,
-            'null' => true,
-        ]);
-        $table->addColumn('shiny_front_sprite_url', 'string', [
-            'default' => null,
-            'limit' => 255,
-            'null' => true,
-        ]);
         $table->create();
     }
 }
