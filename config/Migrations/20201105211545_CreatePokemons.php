@@ -33,7 +33,7 @@ class CreatePokemons extends AbstractMigration
         $table->addColumn('default_front_sprite_url', 'string', [
             'default' => null,
             'limit' => 255,
-            'null' => false,
+            'null' => true,
         ]);
         $table->addColumn('created', 'datetime', [
             'default' => null,
@@ -42,6 +42,16 @@ class CreatePokemons extends AbstractMigration
         $table->addColumn('modified', 'datetime', [
             'default' => null,
             'null' => false,
+        ]);
+        $table->addColumn('default_back_sprite_url', 'string', [
+            'default' => null,
+            'limit' => 255,
+            'null' => true,
+        ]);
+        $table->addColumn('shiny_front_sprite_url', 'string', [
+            'default' => null,
+            'limit' => 255,
+            'null' => true,
         ]);
         $table->create();
     }

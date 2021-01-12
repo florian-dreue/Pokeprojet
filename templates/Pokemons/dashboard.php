@@ -70,9 +70,7 @@ use Cake\ORM\TableRegistry;
                             $trivit = TableRegistry::getTableLocator()->get('pokemon_stats')->find()->where(["stat_id = 6"])->order(["value" => "DESC"]);
                             foreach($trivit as $vitesse){
                                 if($compte<10){
-                                    $id = $vitesse->pokemon_id;
-                                    $id = $id -820;
-                                    $vite=TableRegistry::getTableLocator()->get('pokemons')->find()->where(["pokedex_number=$id"]);
+                                    $vite=TableRegistry::getTableLocator()->get('pokemons')->find()->where(["id=$vitesse->pokemon_id"]);
                                     ?>
                                     <table>
                                         <?php
