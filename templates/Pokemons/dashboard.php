@@ -30,6 +30,27 @@ use Cake\ORM\TableRegistry;
                 </td>
                 <td width=1% border=none></td>
             </tr>
+            <tr style="background-color:rgb(220, 220, 220);">
+                <td width=1%></td>
+                <td width=45% style="border-color:white;">Taille moyene des pokemons de la 5G (en cm*10)</td>
+                <td style="border-color:white;" width=auto>
+                    <?php
+                        $début=494;
+                        $fin=649;
+                        $somme=0;
+                        $count=0;
+                        for($i=$début;$i<=$fin;$i++){
+                            $parcour = TableRegistry::getTableLocator()->get('pokemons')->find()->where(["pokedex_number = $i"]);
+                            foreach($parcour as $poid){
+                                $somme=$somme+ $poid->height;
+                            }
+                            $count+=1;
+                        }
+                    echo round($somme/$count,2);
+                    ?>
+                </td>
+                <td width=1% border=none></td>
+            </tr>
             <tr style="background-color:rgb(207, 207, 207);">
                 <td width=1%></td>
                 <td width=45% style="border-color:white;">Nombre de pokemons fée dans les génération 1,3 et 7</td>
@@ -62,7 +83,7 @@ use Cake\ORM\TableRegistry;
                 <td>
                     <?php
                         $début=1;
-                        $fin=898;
+                        $fin=1010;
                         $compte=0;
                         for($i=$début;$i<=$fin;$i++)
                         {
@@ -94,7 +115,19 @@ use Cake\ORM\TableRegistry;
                                                             echo $compte+1;
                                                         ?>
                                                     </td>
-                                                    <td style="border-color:rgb(97, 97, 97);" width=30%><?php echo $rapide->pokedex_number ?></td>
+                                                    <td style="border-color:rgb(97, 97, 97);" width=15%><?php echo $rapide->pokedex_number ?></td>
+                                                    <td style="border-color:rgb(97, 97, 97);" width=15%>
+                                                    <?php
+                                                    $recupstats = TableRegistry::getTableLocator()->get('pokemon_stats')->find()->where(["pokemon_id=$rapide->id"]);
+                                                    foreach($recupstats as $stats){
+                                                        if($stats->stat_id==6){
+                                                            echo $stats->value;
+                                                        }/*
+                                                        $vitesse = TableRegistry::getTableLocator()->get('stats')->find()->where(["id=$stats->stat_id"]);
+                                                        echo $vitesse->name;*/
+                                                    }
+                                                    ?>
+                                                    </td>
                                                     <td style="border-color:rgb(97, 97, 97);" width=30%>
                                                         <?= $this->Html->link(__(ucwords($rapide->name)), ['controller' => 'Pokemons','action' => 'view', $rapide->id], ['class' => "nav-link"]); ?>
                                                     </td>

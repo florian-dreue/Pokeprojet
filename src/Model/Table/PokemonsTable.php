@@ -100,6 +100,11 @@ class PokemonsTable extends Table
             ->scalar('shiny_front_sprite_url')
             ->maxLength('shiny_front_sprite_url', 255)
             ->allowEmptyString('shiny_front_sprite_url');
+
+        $validator
+            ->scalar('shiny_back_sprite_url')
+            ->maxLength('shiny_back_sprite_url', 255)
+            ->allowEmptyString('shiny_back_sprite_url');
  
 
         return $validator;
@@ -122,6 +127,7 @@ class PokemonsTable extends Table
             'default_front_sprite_url' => $pokeApiData['sprites']['front_default'],
             'default_back_sprite_url' => $pokeApiData['sprites']['back_default'],
             'shiny_front_sprite_url' => $pokeApiData['sprites']['front_shiny'],
+            'shiny_back_sprite_url' => $pokeApiData['sprites']['back_shiny'],
             'height' => $pokeApiData['height'],
             'weight' => $pokeApiData['weight'],
             'pokemon_stats' => $pokemonStats,

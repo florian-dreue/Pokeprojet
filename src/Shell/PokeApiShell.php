@@ -46,6 +46,8 @@ class PokeApiShell extends Shell
         $this->_loadGeneration(722,809);
         $this->verbose('Loading the 8nd generation !');
         $this->_loadGeneration(810,898);
+        $this->verbose('Loading the 9nd generation !');
+        $this->_loadGeneration(899,1010);
     }
 
     /**
@@ -82,7 +84,16 @@ class PokeApiShell extends Shell
 
         if ($response->isOk()) {
             $pokemon = $response->getJson();
-
+            /*
+            $response2 = $http->get("https://pokeapi.co/api/v2/pokemon-species/$number");
+            if($response2->isOk()){
+                $specie = $response2->getJson();
+                $this->verbose($response);
+                if(array_key_exists(4, $specie[22])){
+                    $pokemon[`name`] == $specie[22][4][`name`]; 
+                }
+            }*/
+            
             return $this->Pokemons->formatDataForSave($pokemon);
         } else {
             $this->verbose("Something wrong happen during Api call with Pokemon id : {$number}");

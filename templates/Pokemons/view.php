@@ -16,11 +16,20 @@ use Cake\ORM\TableRegistry;
                 <div class="carousel-inner"">
                     <?php if(!empty($pokemon->shiny_front_sprite_url)){ ?>
                         <div class="item" align="center">
-                            <img src="<?= h($pokemon->shiny_front_sprite_url) ?>" alt="Default" width="40%">
+                            <img src="<?= h($pokemon->shiny_front_sprite_url) ?>" alt="Shiny front" width="40%">
                         </div>
                     <?php } else{ ?>
                         <div class="item" align="center" style="margin-top:15%; margin-bottom:20.25%">
-                            <img src="<?= h($pokemon->shiny_front_sprite_url) ?>" alt="Shiny" width="40%">
+                            <img src="<?= h($pokemon->shiny_front_sprite_url) ?>" alt="Shiny front" width="40%">
+                        </div>
+                    <?php } ?>
+                    <?php if(!empty($pokemon->shiny_back_sprite_url)){ ?>
+                        <div class="item" align="center">
+                            <img src="<?= h($pokemon->shiny_back_sprite_url) ?>" alt="Shiny back" width="40%">
+                        </div>
+                    <?php } else{ ?>
+                        <div class="item" align="center" style="margin-top:15%; margin-bottom:20.25%">
+                            <img src="<?= h($pokemon->shiny_back_sprite_url) ?>" alt="Shiny back" width="40%">
                         </div>
                     <?php } ?>
                     <?php if(!empty($pokemon->default_front_sprite_url)){ ?>
@@ -51,9 +60,18 @@ use Cake\ORM\TableRegistry;
                 </a>
             </div>
             <br>
-            <div class="color_type1" align="left"><table class="types" border="2"><tr><td class="type--<?= h($pokemon->first_type) ?>"><?= h($pokemon->first_type) ?></td></tr></table></div>
+            
             <?php if ($pokemon->has_second_type) : ?>
-                <div class="color_type2" align="right"><table class="types" border="2"><tr><td class="type--<?= h($pokemon->second_type) ?>"><?= $pokemon->second_type ?></td></tr></table></div>
+                <div class="color_type1" align="left"><table class="types"><tr>
+                    <td style="border-radius:10px; padding-left:6px;padding-right:6px; padding-top:2px; padding-bottom:2px;" class="type--<?= h($pokemon->first_type) ?>"><?= h($pokemon->first_type) ?></td>
+                </tr></table></div>
+                <div class="color_type2" align="right"><table class="types"><tr>
+                    <td style="border-radius:10px; padding-left:6px;padding-right:6px; padding-top:2px; padding-bottom:2px;" class="type--<?= h($pokemon->second_type) ?>"><?= $pokemon->second_type ?></td>
+                </tr></table></div>
+            <?php else: ?>
+                <div style="width:min-content; margin:auto;" class="color_type_unique"><table class="types"><tr>
+                    <td style="border-radius:10px; padding-left:6px;padding-right:6px; padding-top:2px; padding-bottom:2px;" class="type--<?= h($pokemon->first_type) ?>"><?= h($pokemon->first_type) ?></td>
+                </tr></table></div>
             <?php endif ?>
             <br>
             <br>

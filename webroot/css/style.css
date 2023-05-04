@@ -7970,7 +7970,6 @@ td.types{
 }
 
 h3.PokeName{
-  text-decoration: underline;
   text-transform: capitalize;
 }
 
@@ -7978,6 +7977,11 @@ div.color_type1{
   color:white;
   float:left; 
   margin-left:30%;
+}
+
+div.color_type_unique{
+  width:min-content;
+  margin:auto;
 }
 
 div.color_type2{

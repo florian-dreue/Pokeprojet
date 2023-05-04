@@ -20,6 +20,11 @@ class AddShinySpriteToPokemons extends AbstractMigration
             'limit' => 255,
             'null' => true,
         ]);
+        $table->addColumn('shiny_back_sprite_url', 'string', [
+            'default' => null,
+            'limit' => 255,
+            'null' => true,
+        ]);
         $table->update();
     }
 }
